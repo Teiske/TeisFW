@@ -69,7 +69,7 @@ add_library(common
 
 # Demo
 add_executable(demo
-	demo/demo.cpp
+	demo/main.cpp
 )
 target_link_libraries(demo
 	common
