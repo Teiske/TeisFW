@@ -68,8 +68,8 @@ add_library(common
 )
 
 # Demo
-add_executable(demo
-	demo/main.cpp
+add_executable(main
+	main/main.cpp
 )
 target_link_libraries(demo
 	common
@@ -78,7 +78,7 @@ target_link_libraries(demo
 # Copy assets and shaders to the build directory
 # (In Visual Studio, copy these directories to either 'Release' or 'Build')
 file(
-	COPY demo/assets
+	COPY main/assets
 	DESTINATION ${CMAKE_BINARY_DIR}
 )
 file(
