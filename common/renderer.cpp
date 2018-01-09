@@ -7,25 +7,21 @@
 #include <common/camera.h>
 #include <common/renderer.h>
 
-Renderer::Renderer()
-{
-	_window_width = 1280;
-	_window_height =720;
+Renderer::Renderer() {
+	_window_width = 1290;
+	_window_height = 720;
 
 	this->init();
 }
 
-Renderer::~Renderer()
-{
+Renderer::~Renderer() {
 	// Cleanup VBO and shader
 	glDeleteProgram(_programID);
 }
 
-int Renderer::init()
-{
+int Renderer::init() {
 	// Initialise GLFW
-	if( !glfwInit() )
-	{
+	if( !glfwInit() ) {
 		fprintf( stderr, "Failed to initialize GLFW\n" );
 		return -1;
 	}
@@ -81,8 +77,7 @@ void Renderer::renderScene() {
 	glfwPollEvents();
 }
 
-void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot)
-{
+void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot) {
 	glm::mat4 viewMatrix  = getViewMatrix(); // get from Camera (Camera position and direction)
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
@@ -140,8 +135,7 @@ void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float 
 	glDisableVertexAttribArray(vertexUVID);
 }
 
-GLuint Renderer::loadShaders(const char* vertex_file_path, const char* fragment_file_path)
-{
+GLuint Renderer::loadShaders(const char* vertex_file_path, const char* fragment_file_path) {
 	// Create the shaders
 	GLuint vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	GLuint fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);

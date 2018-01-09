@@ -7,9 +7,7 @@
 
 #include <common/sprite.h>
 
-
-Sprite::Sprite(std::string image_path)
-{
+Sprite::Sprite(std::string image_path, int _width, int _height) {
 	// these will be set correctly in loadTGA()
 	_width = 0;
 	_height = 0;
@@ -49,15 +47,13 @@ Sprite::Sprite(std::string image_path)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data), g_uv_buffer_data, GL_STATIC_DRAW);
 }
 
-Sprite::~Sprite()
-{
+Sprite::~Sprite() {
 	glDeleteBuffers(1, &_vertexbuffer);
 	glDeleteBuffers(1, &_uvbuffer);
 	glDeleteTextures(1, &_texture); // texture created in loadTGA() with glGenTextures()
 }
 
-GLuint Sprite::loadTGA(const std::string& imagepath)
-{
+GLuint Sprite::loadTGA(const std::string& imagepath) {
 	std::cout << "Loading TGA: " << imagepath << std::endl;
 
 	FILE *file;

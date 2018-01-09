@@ -1,15 +1,9 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include <string>
-
-#include <GL/glew.h>
-
-#include <common/renderer.h>
-#include <common/sprite.h>
-
 class Scene {
- public:
+ 
+public:
 	 Scene();
 	 ~Scene();
 
@@ -17,4 +11,4 @@ class Scene {
 
 };
 
-#endif // !SCENE_H
+#endif /* SCENE_H */
