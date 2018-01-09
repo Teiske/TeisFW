@@ -9,14 +9,15 @@
 #include <glm/gtx/euler_angles.hpp>
 
 #include <common/sprite.h>
+#include <common/scene.h>
 
-class Renderer
-{
+class Renderer {
 	public:
-		Renderer(unsigned int w, unsigned int h);
+		Renderer();
 		virtual ~Renderer();
 
-		void renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot);
+		void renderScene(Scene* scene);
+		void renderSprite(Sprite* sprite, float rot);
 		GLFWwindow* window() { return _window; };
 
 		unsigned int width() { return _window_width; };

@@ -5,11 +5,13 @@
 
 #include <GL/glew.h>
 
-class Sprite
-{
+class Sprite {
 	public:
-		Sprite(std::string image_path);
+		Sprite(std::string image_path, int sprite_width, int sprite_height);
 		virtual ~Sprite();
+
+		int pos_x;
+		int pos_y;
 
 		GLuint texture() { return _texture; };
 		GLuint vertexbuffer() { return _vertexbuffer; };

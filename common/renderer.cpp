@@ -6,26 +6,24 @@
 
 #include <common/camera.h>
 #include <common/renderer.h>
+#include <common/sprite.h>
+#include <common/scene.h>
 
-Renderer::Renderer(unsigned int w, unsigned int h)
-{
-	_window_width = w;
-	_window_height = h;
+Renderer::Renderer() {
+	_window_width = 1280;
+	_window_height = 720;
 
 	this->init();
 }
 
-Renderer::~Renderer()
-{
+Renderer::~Renderer() {
 	// Cleanup VBO and shader
 	glDeleteProgram(_programID);
 }
 
-int Renderer::init()
-{
+int Renderer::init() {
 	// Initialise GLFW
-	if( !glfwInit() )
-	{
+	if( !glfwInit() ) {
 		fprintf( stderr, "Failed to initialize GLFW\n" );
 		return -1;
 	}
@@ -42,6 +40,8 @@ int Renderer::init()
 		return -1;
 	}
 	glfwMakeContextCurrent(_window);
+
+	glfwSwapInterval(1);
 
 	// Initialize GLEW
 	if (glewInit() != GLEW_OK) {
@@ -74,15 +74,27 @@ int Renderer::init()
 	return 0;
 }
 
-void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot)
-{
+void Renderer::renderScene(Scene* scene) {
+	//Clear scene
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	int s = scene->spriteList.size();
+	for (int i = 0; i < s; i++) {
+		renderSprite(scene->spriteList[i], 0.0f);
+	}
+
+	glfwSwapBuffers(_window);
+	glfwPollEvents();
+}
+
+void Renderer::renderSprite(Sprite* sprite, float rot) {
 	glm::mat4 viewMatrix  = getViewMatrix(); // get from Camera (Camera position and direction)
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	// Build the Model matrix
-	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(px, py, 0.0f));
+	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(sprite->pos_x, sprite->pos_y, 0.0f));
 	glm::mat4 rotationMatrix	= glm::eulerAngleYXZ(0.0f, 0.0f, rot);
-	glm::mat4 scalingMatrix	 = glm::scale(glm::mat4(1.0f), glm::vec3(sx, sy, 1.0f));
+	glm::mat4 scalingMatrix	 = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 
 	modelMatrix = translationMatrix * rotationMatrix * scalingMatrix;
 
@@ -133,8 +145,7 @@ void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float 
 	glDisableVertexAttribArray(vertexUVID);
 }
 
-GLuint Renderer::loadShaders(const char* vertex_file_path, const char* fragment_file_path)
-{
+GLuint Renderer::loadShaders(const char* vertex_file_path, const char* fragment_file_path) {
 	// Create the shaders
 	GLuint vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	GLuint fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);

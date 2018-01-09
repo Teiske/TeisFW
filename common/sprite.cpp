@@ -7,12 +7,10 @@
 
 #include <common/sprite.h>
 
-
-Sprite::Sprite(std::string image_path)
-{
+Sprite::Sprite(std::string image_path, int sprite_width, int sprite_height) {
 	// these will be set correctly in loadTGA()
-	_width = 0;
-	_height = 0;
+	pos_x = 0;
+	pos_y = 0;
 
 	// Load image as texture
 	_texture = loadTGA(image_path.c_str());
@@ -20,13 +18,13 @@ Sprite::Sprite(std::string image_path)
 	// Our vertices. Tree consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.
 	// A sprite has 1 face (quad) with 2 triangles each, so this makes 1*2=2 triangles, and 2*3 vertices
 	GLfloat g_vertex_buffer_data[18] = {
-		 0.5f * _width, -0.5f * _height, 0.0f,
-		-0.5f * _width, -0.5f * _height, 0.0f,
-		-0.5f * _width,  0.5f * _height, 0.0f,
+		 0.5f * sprite_width, -0.5f * sprite_height, 0.0f,
+		-0.5f * sprite_width, -0.5f * sprite_height, 0.0f,
+		-0.5f * sprite_width,  0.5f * sprite_height, 0.0f,
 
-		-0.5f * _width,  0.5f * _height, 0.0f,
-		 0.5f * _width,  0.5f * _height, 0.0f,
-		 0.5f * _width, -0.5f * _height, 0.0f
+		-0.5f * sprite_width,  0.5f * sprite_height, 0.0f,
+		 0.5f * sprite_width,  0.5f * sprite_height, 0.0f,
+		 0.5f * sprite_width, -0.5f * sprite_height, 0.0f
 	};
 
 	// Two UV coordinates for each vertex.
@@ -49,15 +47,13 @@ Sprite::Sprite(std::string image_path)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data), g_uv_buffer_data, GL_STATIC_DRAW);
 }
 
-Sprite::~Sprite()
-{
+Sprite::~Sprite() {
 	glDeleteBuffers(1, &_vertexbuffer);
 	glDeleteBuffers(1, &_uvbuffer);
 	glDeleteTextures(1, &_texture); // texture created in loadTGA() with glGenTextures()
 }
 
-GLuint Sprite::loadTGA(const std::string& imagepath)
-{
+GLuint Sprite::loadTGA(const std::string& imagepath) {
 	std::cout << "Loading TGA: " << imagepath << std::endl;
 
 	FILE *file;

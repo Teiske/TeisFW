@@ -65,13 +65,15 @@ add_library(common
 	common/renderer.cpp
 	common/sprite.h
 	common/sprite.cpp
+	common/scene.h
+	common/scene.cpp
 )
 
 # Demo
 add_executable(main
 	main/main.cpp
 )
-target_link_libraries(demo
+target_link_libraries(main
 	common
 	${ALL_GRAPHICS_LIBS}
 )
