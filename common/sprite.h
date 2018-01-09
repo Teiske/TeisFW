@@ -7,11 +7,8 @@
 
 class Sprite {
 	public:
-		Sprite(std::string image_path, int _width, int _height);
+		Sprite(std::string image_path);
 		virtual ~Sprite();
-
-		int pos_x;
-		int pos_y;
 
 		GLuint texture() { return _texture; };
 		GLuint vertexbuffer() { return _vertexbuffer; };

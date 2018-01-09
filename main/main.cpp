@@ -7,11 +7,12 @@
 #include <common/renderer.h>
 #include <common/camera.h>
 #include <common/sprite.h>
+#include <common/scene.h>
 
 int main( void )
 {
 	Renderer renderer;
-
+	Scene* myScene = new Scene();
 	//Sprite* pencils = new Sprite("assets/pencils.tga");
 	//Sprite* kingkong = new Sprite("assets/kingkong.tga");
 	//Sprite* rgba = new Sprite("assets/rgba.tga");
@@ -19,7 +20,7 @@ int main( void )
 	float rot_z = 0.0f;
 
 	do {
-		renderer.renderScene();
+		renderer.renderScene(myScene);
 		// Clear the screen
 		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
