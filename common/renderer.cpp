@@ -7,10 +7,10 @@
 #include <common/camera.h>
 #include <common/renderer.h>
 
-Renderer::Renderer(unsigned int w, unsigned int h)
+Renderer::Renderer()
 {
-	_window_width = w;
-	_window_height = h;
+	_window_width = 1280;
+	_window_height =720;
 
 	this->init();
 }
@@ -72,6 +72,13 @@ int Renderer::init()
 	glUseProgram(_programID);
 
 	return 0;
+}
+
+void Renderer::renderScene() {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glfwSwapBuffers(_window);
+	glfwPollEvents();
 }
 
 void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot)

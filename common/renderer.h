@@ -13,9 +13,10 @@
 class Renderer
 {
 	public:
-		Renderer(unsigned int w, unsigned int h);
+		Renderer();
 		virtual ~Renderer();
 
+		void renderScene();
 		void renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot);
 		GLFWwindow* window() { return _window; };
 
