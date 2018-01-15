@@ -1,6 +1,6 @@
 # CMake entry point
 cmake_minimum_required (VERSION 2.6)
-project (MyFramework)
+project (TeisFW)
 
 find_package(OpenGL REQUIRED)
 
@@ -69,7 +69,7 @@ add_library(common
 	common/scene.cpp
 )
 
-# Demo
+# Main
 add_executable(main
 	main/main.cpp
 )

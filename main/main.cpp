@@ -9,18 +9,18 @@
 #include <common/sprite.h>
 #include <common/scene.h>
 
-int main( void )
-{
+int main( void ) {
 	Renderer renderer;
 	Scene* myScene = new Scene();
 	//Sprite* pencils = new Sprite("assets/pencils.tga");
 	//Sprite* kingkong = new Sprite("assets/kingkong.tga");
 	//Sprite* rgba = new Sprite("assets/rgba.tga");
 
-	float rot_z = 0.0f;
+	//float rot_z = 0.0f;
 
 	do {
 		renderer.renderScene(myScene);
+		//std::cout << myScene << std::endl;
 		// Clear the screen
 		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -44,6 +44,7 @@ int main( void )
 	while( glfwGetKey(renderer.window(), GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
 		   glfwWindowShouldClose(renderer.window()) == 0 );
 
+	delete myScene;
 	//delete pencils;
 	//delete kingkong;
 	//delete rgba;

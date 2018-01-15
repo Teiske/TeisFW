@@ -1,6 +1,14 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include <cstdio>
+#include <cstdlib>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <iostream>
+
+
 #include <GL/glew.h>
 #include <glfw3.h>
 
@@ -11,8 +19,7 @@
 #include <common/sprite.h>
 #include <common/scene.h>
 
-class Renderer
-{
+class Renderer {
 	public:
 		Renderer();
 		virtual ~Renderer();

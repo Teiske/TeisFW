@@ -1,14 +1,8 @@
-#include <cstdio>
-#include <cstdlib>
-#include <string>
-#include <vector>
-#include <fstream>
-
-#include <common/camera.h>
 #include <common/renderer.h>
+#include <common/camera.h>
 
 Renderer::Renderer() {
-	_window_width = 1290;
+	_window_width = 1280;
 	_window_height = 720;
 
 	this->init();
@@ -31,8 +25,8 @@ int Renderer::init() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
 	// Open a window and create its OpenGL context
-	_window = glfwCreateWindow( _window_width, _window_height, "Demo", NULL, NULL);
-	if( _window == NULL ){
+	_window = glfwCreateWindow( _window_width, _window_height, "Main", NULL, NULL);
+	if( _window == NULL ) {
 		fprintf( stderr, "Failed to open GLFW window.\n" );
 		glfwTerminate();
 		return -1;
@@ -60,7 +54,7 @@ int Renderer::init() {
 	glEnable(GL_CULL_FACE);
 
 	// Create and compile our GLSL program from the shaders
-	_programID = this->loadShaders("shaders/sprite.vert", "shaders/sprite.frag");
+	_programID = this->loadShaders("shaders/vertices.vert", "shaders/fragments.frag");
 
 	_projectionMatrix = glm::ortho(0.0f, (float)_window_width, (float)_window_height, 0.0f, 0.1f, 100.0f);
 
@@ -72,6 +66,10 @@ int Renderer::init() {
 
 void Renderer::renderScene(Scene* scene) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	computeMatricesFromInputs(_window);
+
+	this->renderSprite(scene->_pencils, 400, 300, 1.0f, 1.0f, 0.0f);
 
 	glfwSwapBuffers(_window);
 	glfwPollEvents();
@@ -108,10 +106,10 @@ void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float 
 	glBindBuffer(GL_ARRAY_BUFFER, sprite->vertexbuffer());
 	glVertexAttribPointer(
 		vertexPosition_modelspaceID,  // The attribute we want to configure
-		3,							// size : x+y+z => 3
-		GL_FLOAT,					 // type
-		GL_FALSE,					 // normalized?
-		0,							// stride
+		3,							  // size : x+y+z => 3
+		GL_FLOAT,					  // type
+		GL_FALSE,					  // normalized?
+		0,							  // stride
 		(void*)0					  // array buffer offset
 	);
 
@@ -120,12 +118,12 @@ void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float 
 	glEnableVertexAttribArray(vertexUVID);
 	glBindBuffer(GL_ARRAY_BUFFER, sprite->uvbuffer());
 	glVertexAttribPointer(
-		vertexUVID,				   // The attribute we want to configure
+		vertexUVID,				    // The attribute we want to configure
 		2,							// size : U+V => 2
-		GL_FLOAT,					 // type
-		GL_FALSE,					 // normalized?
+		GL_FLOAT,					// type
+		GL_FALSE,					// normalized?
 		0,							// stride
-		(void*)0					  // array buffer offset
+		(void*)0					// array buffer offset
 	);
 
 	// Draw the triangles !
