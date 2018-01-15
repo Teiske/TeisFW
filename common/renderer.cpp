@@ -70,6 +70,8 @@ void Renderer::renderScene(Scene* scene) {
 	computeMatricesFromInputs(_window);
 
 	this->renderSprite(scene->_pencils, 400, 300, 1.0f, 1.0f, 0.0f);
+	this->renderSprite(scene->_kingkong, 900, 400, 1.0f, 1.0f, 0.0f);
+	this->renderSprite(scene->rgba(), width() / 2, height() / 2, 3.0f, 3.0f, 3.0f);
 
 	glfwSwapBuffers(_window);
 	glfwPollEvents();
