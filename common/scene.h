@@ -32,13 +32,14 @@ class Scene {
 
 		 float rot_z = 0.0f;
 
-		 Sprite* _pencils;
-		 Sprite* _kingkong;
+		 Sprite* pencils() { return _pencils; };
+		 Sprite* kingkong() { return _kingkong; };
 		 Sprite* rgba() { return _rgba; };
 
 	 private:
-		 //Sprite* _pencils = new Sprite("assets/pencils.tga");
 		 Sprite* _rgba;
+		 Sprite* _pencils;
+		 Sprite* _kingkong;
 	 
 };
 
