@@ -65,9 +65,17 @@ int Renderer::init() {
 }
 
 void Renderer::renderScene(Scene* scene) {
+	//Clear window
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	//Get camera view
 	computeMatricesFromInputs(_window);
+
+	//Putting the sprites into a sprite list
+	int s = scene->spritelist.size();
+	for (int i = 0; i < s; i++) {
+		renderSprite(scene->spritelist[i]);
+	}
 
 	this->renderSprite(scene->pencils()/*, 400, 300, 1.0f, 1.0f, 0.0f*/);
 	this->renderSprite(scene->kingkong()/*, 900, 400, 1.0f, 1.0f, 0.0f*/);

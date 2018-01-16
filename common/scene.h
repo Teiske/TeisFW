@@ -38,10 +38,11 @@ class Scene {
 		 Sprite* kingkong() { return _kingkong; };
 		 Sprite* rgba() { return _rgba; };
 
+
 	 private:
+		 Sprite * _pencils;
+		 Sprite * _kingkong;
 		 Sprite* _rgba;
-		 Sprite* _pencils;
-		 Sprite* _kingkong;
 	 
 };
 
