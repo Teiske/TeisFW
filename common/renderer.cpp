@@ -69,22 +69,22 @@ void Renderer::renderScene(Scene* scene) {
 
 	computeMatricesFromInputs(_window);
 
-	this->renderSprite(scene->pencils(), 400, 300, 1.0f, 1.0f, 0.0f);
-	this->renderSprite(scene->kingkong(), 900, 400, 1.0f, 1.0f, 0.0f);
-	this->renderSprite(scene->rgba(), width()/2, height()/2, 3.0f, 3.0f, 3.0f);
+	this->renderSprite(scene->pencils()/*, 400, 300, 1.0f, 1.0f, 0.0f*/);
+	this->renderSprite(scene->kingkong()/*, 900, 400, 1.0f, 1.0f, 0.0f*/);
+	this->renderSprite(scene->rgba()/*, width()/2, height()/2, 3.0f, 3.0f, 3.0f*/);
 
 	glfwSwapBuffers(_window);
 	glfwPollEvents();
 }
 
-void Renderer::renderSprite(Sprite* sprite, float px, float py, float sx, float sy, float rot) {
+void Renderer::renderSprite(Sprite* sprite/*, float px, float py, float sx, float sy, float rot*/) {
 	glm::mat4 viewMatrix  = getViewMatrix(); // get from Camera (Camera position and direction)
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	// Build the Model matrix
-	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(px, py, 0.0f));
-	glm::mat4 rotationMatrix	= glm::eulerAngleYXZ(0.0f, 0.0f, rot);
-	glm::mat4 scalingMatrix	 = glm::scale(glm::mat4(1.0f), glm::vec3(sx, sy, 1.0f));
+	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(sprite->s_posx, sprite->s_posy, 0.0f));
+	glm::mat4 rotationMatrix	= glm::eulerAngleYXZ(0.0f, 0.0f, sprite->s_rot);
+	glm::mat4 scalingMatrix	 = glm::scale(glm::mat4(1.0f), glm::vec3(sprite->s_width, sprite->s_height, 1.0f));
 
 	modelMatrix = translationMatrix * rotationMatrix * scalingMatrix;
 

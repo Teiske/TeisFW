@@ -32,6 +32,8 @@ class Scene {
 
 		 float rot_z = 0.0f;
 
+		 std::vector<Sprite*> spritelist;
+
 		 Sprite* pencils() { return _pencils; };
 		 Sprite* kingkong() { return _kingkong; };
 		 Sprite* rgba() { return _rgba; };
