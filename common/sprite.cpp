@@ -183,3 +183,12 @@ GLuint Sprite::loadTGA(const std::string& imagepath) {
 	// Return the ID of the texture we just created
 	return textureID;
 }
+
+void Sprite::setupSprite(const std::string image_path, float px, float py, float uv_w, float uv_h, float rot) {
+
+	px = s_posx;
+	py = s_posy;
+	uv_w = width();
+	uv_h = height();
+	rot = s_rot;
+}
