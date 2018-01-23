@@ -39,13 +39,11 @@ class Scene {
 		 Sprite* rgba()     { return _rgba; };
 		 Sprite* uv()       { return _uv; };
 
-
 	 private:
 		 Sprite* _pencils;
 		 Sprite* _kingkong;
 		 Sprite* _rgba;
 		 Sprite* _uv;
-	 
 };
 
 #endif /* SCENE_H */

@@ -72,17 +72,17 @@ void Renderer::renderScene(Scene* scene) {
 	computeMatricesFromInputs(_window);
 
 	//Putting the sprites into a sprite list
-	//int s = scene->spritelist.size();
-	//for (int i = 0; i < s; i++) {
-	//	renderSprite(scene->spritelist[i]);
-	//	//std::cout << scene->spritelist[i] << std::endl;
-	//}
+	int s = scene->spritelist.size();
+	for (int i = 0; i < s; i++) {
+		this->renderSprite(scene->spritelist[i]);
+		//std::cout << scene->spritelist[i] << std::endl;
+	}
 	
 
-	this->renderSprite(scene->pencils());
+	//this->renderSprite(scene->pencils());
 	//this->renderSprite(scene->uv());
-	//this->renderSprite(scene->kingkong()/*, 900, 400, 1.0f, 1.0f, 0.0f*/);
-	//this->renderSprite(scene->rgba()/*, width()/2, height()/2, 3.0f, 3.0f, 3.0f*/);
+	//this->renderSprite(scene->kingkong());
+	//this->renderSprite(scene->rgba());
 
 	glfwSwapBuffers(_window);
 	glfwPollEvents();
