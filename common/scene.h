@@ -34,15 +34,17 @@ class Scene {
 
 		 std::vector<Sprite*> spritelist;
 
-		 Sprite* pencils() { return _pencils; };
+		 Sprite* pencils()  { return _pencils; };
 		 Sprite* kingkong() { return _kingkong; };
-		 Sprite* rgba() { return _rgba; };
+		 Sprite* rgba()     { return _rgba; };
+		 Sprite* uv()       { return _uv; };
 
 
 	 private:
-		 Sprite * _pencils;
-		 Sprite * _kingkong;
+		 Sprite* _pencils;
+		 Sprite* _kingkong;
 		 Sprite* _rgba;
+		 Sprite* _uv;
 	 
 };
 

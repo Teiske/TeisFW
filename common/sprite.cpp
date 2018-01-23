@@ -7,13 +7,16 @@
 
 #include <common/sprite.h>
 
-Sprite::Sprite(std::string image_path, int s_posx, int s_posy, float s_width, float s_height, float s_rot) {
+Sprite::Sprite(std::string image_path) {
 	// these will be set correctly in loadTGA()
 	_width = 0;
 	_height = 0;
 
 	// Load image as texture
 	_texture = loadTGA(image_path.c_str());
+
+	this->setupSprite("assets/pencils.tga", 500, 500, 1.0f, 1.0f, 1.0f);
+	//this->setupSprite("assets/uv.tga", 200, 200, 2.0f, 2.0f, 0.0f);
 
 	// Our vertices. Tree consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.
 	// A sprite has 1 face (quad) with 2 triangles each, so this makes 1*2=2 triangles, and 2*3 vertices
@@ -56,7 +59,7 @@ Sprite::~Sprite() {
 GLuint Sprite::loadTGA(const std::string& imagepath) {
 	std::cout << "Loading TGA: " << imagepath << std::endl;
 
-	FILE *file;
+	FILE* file;
 	unsigned char type[4];
 	unsigned char info[6];
 
@@ -184,11 +187,11 @@ GLuint Sprite::loadTGA(const std::string& imagepath) {
 	return textureID;
 }
 
-void Sprite::setupSprite(const std::string image_path, float px, float py, float uv_w, float uv_h, float rot) {
+void Sprite::setupSprite(const std::string image_path, float px = 0.0f, float py = 0.0f, float sx = 1.0f, float sy = 1.0f, float rot = 0.0f) {
 
-	px = s_posx;
-	py = s_posy;
-	uv_w = width();
-	uv_h = height();
-	rot = s_rot;
+	this->_posx   = px;
+	this->_posy   = py;
+	this->_scalex = sx;
+	this->_scaley = sy;
+	this->_rot    = rot;
 }

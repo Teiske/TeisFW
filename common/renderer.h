@@ -25,7 +25,7 @@ class Renderer {
 		virtual ~Renderer();
 
 		void renderScene(Scene* scene);
-		void renderSprite(Sprite* sprite/*, float px, float py, float sx, float sy, float rot*/);
+		void renderSprite(Sprite* sprite);
 		GLFWwindow* window() { return _window; };
 
 		unsigned int width() { return _window_width; };
