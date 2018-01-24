@@ -75,10 +75,8 @@ void Renderer::renderScene(Scene* scene) {
 	int s = scene->spritelist.size();
 	for (int i = 0; i < s; i++) {
 		this->renderSprite(scene->spritelist[i]);
-		//std::cout << scene->spritelist[i] << std::endl;
 	}
 	
-
 	//this->renderSprite(scene->pencils());
 	//this->renderSprite(scene->uv());
 	//this->renderSprite(scene->kingkong());

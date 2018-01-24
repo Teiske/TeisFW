@@ -67,6 +67,8 @@ add_library(common
 	common/sprite.cpp
 	common/scene.h
 	common/scene.cpp
+	common/entity.h
+	common/entity.cpp
 )
 
 # Main

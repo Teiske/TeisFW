@@ -15,15 +15,15 @@ class Sprite {
 		GLuint vertexbuffer() { return _vertexbuffer; };
 		GLuint uvbuffer() { return _uvbuffer; };
 
-		//Sets the position, scale and rotation
-		float posx() { return _posx; };
-		float posy() { return _posy; };
+		//Float used for setting the position, scale and rotation
+		float posx()   { return _posx; };
+		float posy()   { return _posy; };
 		float scalex() { return _scalex; };
 		float scaley() { return _scaley; };
-		float rot() { return _rot; }
+		float rot()    { return _rot; }
 
-		//Sets the width and height 
-		unsigned int width() { return _width; };
+		//Int's used for setting the width and height 
+		unsigned int width()  { return _width; };
 		unsigned int height() { return _height; };
 
 	private:
