@@ -43,7 +43,7 @@ int Renderer::init() {
 	glfwSetInputMode(_window, GLFW_STICKY_KEYS, GL_TRUE);
 
 	// Dark blue background
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(0.0f, 0.0f, 0.2f, 0.0f);
 
 	// Enable depth test
 	//glEnable(GL_DEPTH_TEST);
@@ -76,11 +76,6 @@ void Renderer::renderScene(Scene* scene) {
 	for (int i = 0; i < s; i++) {
 		this->renderSprite(scene->spritelist[i]);
 	}
-	
-	//this->renderSprite(scene->pencils());
-	//this->renderSprite(scene->uv());
-	//this->renderSprite(scene->kingkong());
-	//this->renderSprite(scene->rgba());
 
 	glfwSwapBuffers(_window);
 	glfwPollEvents();

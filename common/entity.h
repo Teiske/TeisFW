@@ -13,13 +13,23 @@
 
 #include <common/sprite.h>
 
-class entity {
+class Entity {
 	public:
-		entity();
-		virtual ~entity();
+		Entity();
+		void addSprite(Sprite* _spr);
+		virtual ~Entity();
+
+		Sprite* sprite() { return _sprite; };
 
 	private:
+		Sprite * _sprite;
 
+		/*void deleteSprite() {
+			if (_sprite != NULL) {
+				delete _sprite;
+				_sprite = NULL;
+			}
+		};*/
 };
 
 #endif /* ENTITY_H */

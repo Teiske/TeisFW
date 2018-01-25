@@ -20,7 +20,9 @@ class Sprite {
 		float posy()   { return _posy; };
 		float scalex() { return _scalex; };
 		float scaley() { return _scaley; };
-		float rot()    { return _rot; }
+		float rot()    { return _rot; };
+
+		void rot(float set) { _rot = set; };
 
 		//Int's used for setting the width and height 
 		unsigned int width()  { return _width; };
@@ -37,7 +39,7 @@ class Sprite {
 		float _posy;
 		float _scalex;
 		float _scaley;
-		float _rot = 0.0f;
+		float _rot;
 
 		unsigned int _width;
 		unsigned int _height;

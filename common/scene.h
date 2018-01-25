@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <ostream>
 
 // Include GLEW
 #include <GL/glew.h>
@@ -28,9 +29,8 @@ class Scene {
  
 	public:
 		 Scene();
+		 void updateScene();
 		 virtual ~Scene();
-
-		 float rot_z = 0.0f;
 
 		 std::vector<Sprite*> spritelist;
 
@@ -39,11 +39,15 @@ class Scene {
 		 Sprite* rgba()     { return _rgba; };
 		 Sprite* uv()       { return _uv; };
 
+		 float rot_z() { return _rot_z; };
+
 	 private:
 		 Sprite* _pencils;
 		 Sprite* _kingkong;
 		 Sprite* _rgba;
 		 Sprite* _uv;
+
+		 float _rot_z = 0.0f;
 };
 
 #endif /* SCENE_H */

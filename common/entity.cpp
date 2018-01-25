@@ -1,10 +1,18 @@
 #include "entity.h"
 
-
-
-entity::entity() {
+Entity::Entity() {
+	_sprite = NULL;
 }
 
+Entity::~Entity() {
 
-entity::~entity() {
+}
+
+void Entity::addSprite(Sprite * _spr) {
+	//_sprite = new Sprite();
+	*_sprite = *_spr;
+}
+
+void Entity::updateEntity() {
+
 }

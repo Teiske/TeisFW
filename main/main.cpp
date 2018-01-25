@@ -14,6 +14,7 @@ int main( void ) {
 	Scene* myScene = new Scene();
 
 	do {
+		myScene->updateScene();
 		renderer.renderScene(myScene);
 
 		//glm::vec3 cursor = getCursor(); // from Camera
