@@ -16,8 +16,9 @@
 class Entity {
 	public:
 		Entity();
-		void addSprite(Sprite* _spr);
 		virtual ~Entity();
+		void addSprite(Sprite* _spr);
+		void updateEntity();
 
 		Sprite* sprite() { return _sprite; };
 
