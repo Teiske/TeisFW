@@ -69,6 +69,7 @@ add_library(common
 	common/scene.cpp
 	common/entity.h
 	common/entity.cpp
+	common/point_x.h
 )
 
 # Main

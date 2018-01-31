@@ -18,6 +18,7 @@
 
 #include <common/sprite.h>
 #include <common/scene.h>
+#include <common/entity.h>
 
 class Renderer {
 	public:
@@ -26,6 +27,7 @@ class Renderer {
 
 		void renderScene(Scene* scene);
 		void renderSprite(Sprite* sprite);
+		void renderEntity(Entity* entity);
 		GLFWwindow* window() { return _window; };
 
 		unsigned int width() { return _window_width; };
