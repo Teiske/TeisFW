@@ -13,7 +13,6 @@ public:
 	T x;
 	T y;
 	
-
 private:
 
 };

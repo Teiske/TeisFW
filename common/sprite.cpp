@@ -16,8 +16,6 @@ Sprite::Sprite(std::string image_path) {
 	// Load image as texture
 	_texture = loadTGA(image_path.c_str());
 
-	//this->setupSprite("assets/pencils.tga", 640, 360, 1.0f, 1.0f, 0.0f);
-	//this->setupSprite("assets/kingkong.tga", width()/2, height()/2, 1.0f, 1.0f, 0.0f);
 
 	// Our vertices. Tree consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.
 	// A sprite has 1 face (quad) with 2 triangles each, so this makes 1*2=2 triangles, and 2*3 vertices

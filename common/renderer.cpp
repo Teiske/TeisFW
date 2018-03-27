@@ -16,7 +16,7 @@ Renderer::~Renderer() {
 int Renderer::init() {
 	// Initialise GLFW
 	if( !glfwInit() ) {
-		fprintf( stderr, "Failed to initialize GLFW\n" );
+		fprintf(stderr, "Failed to initialize GLFW\n");
 		return -1;
 	}
 
@@ -27,12 +27,12 @@ int Renderer::init() {
 	// Open a window and create its OpenGL context
 	_window = glfwCreateWindow( _window_width, _window_height, "Main", NULL, NULL);
 	if( _window == NULL ) {
-		fprintf( stderr, "Failed to open GLFW window.\n" );
+		fprintf(stderr, "Failed to open GLFW window.\n");
 		glfwTerminate();
 		return -1;
 	}
 	glfwMakeContextCurrent(_window);
-
+	
 	// Initialize GLEW
 	if (glewInit() != GLEW_OK) {
 		fprintf(stderr, "Failed to initialize GLEW\n");
@@ -139,63 +139,63 @@ void Renderer::renderSprite(Sprite* sprite) {
 	glDisableVertexAttribArray(vertexUVID);
 }
 
-void Renderer::renderEntity(Entity* entity) {
-	glm::mat4 viewMatrix = getViewMatrix(); // get from Camera (Camera position and direction)
-	glm::mat4 modelMatrix = glm::mat4(1.0f);
-
-	// Build the Model matrix
-	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(sprite->posx(), sprite->posy(), 0.0f));
-	glm::mat4 rotationMatrix = glm::eulerAngleYXZ(0.0f, 0.0f, sprite->rot());
-	glm::mat4 scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(sprite->scalex(), sprite->scaley(), 1.0f));
-
-	modelMatrix = translationMatrix * rotationMatrix * scalingMatrix;
-
-	glm::mat4 MVP = _projectionMatrix * viewMatrix * modelMatrix;
-
-	// Send our transformation to the currently bound shader,
-	// in the "MVP" uniform
-	GLuint matrixID = glGetUniformLocation(_programID, "MVP");
-	glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
-
-	// Bind our texture in Texture Unit 0
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, sprite->texture());
-	// Set our "myTextureSampler" sampler to user Texture Unit 0
-	GLuint textureID = glGetUniformLocation(_programID, "myTextureSampler");
-	glUniform1i(textureID, 0);
-
-	// 1st attribute buffer : vertices
-	GLuint vertexPosition_modelspaceID = glGetAttribLocation(_programID, "vertexPosition_modelspace");
-	glEnableVertexAttribArray(vertexPosition_modelspaceID);
-	glBindBuffer(GL_ARRAY_BUFFER, sprite->vertexbuffer());
-	glVertexAttribPointer(
-		vertexPosition_modelspaceID,  // The attribute we want to configure
-		3,							  // size : x+y+z => 3
-		GL_FLOAT,					  // type
-		GL_FALSE,					  // normalized?
-		0,							  // stride
-		(void*)0					  // array buffer offset
-	);
-
-	// 2nd attribute buffer : UVs
-	GLuint vertexUVID = glGetAttribLocation(_programID, "vertexUV");
-	glEnableVertexAttribArray(vertexUVID);
-	glBindBuffer(GL_ARRAY_BUFFER, sprite->uvbuffer());
-	glVertexAttribPointer(
-		vertexUVID,				    // The attribute we want to configure
-		2,							// size : U+V => 2
-		GL_FLOAT,					// type
-		GL_FALSE,					// normalized?
-		0,							// stride
-		(void*)0					// array buffer offset
-	);
-
-	// Draw the triangles !
-	glDrawArrays(GL_TRIANGLES, 0, 2 * 3); // 2*3 indices starting at 0 -> 2 triangles
-
-	glDisableVertexAttribArray(vertexPosition_modelspaceID);
-	glDisableVertexAttribArray(vertexUVID);
-}
+//void Renderer::renderEntity(Entity* entity) {
+//	glm::mat4 viewMatrix = getViewMatrix(); // get from Camera (Camera position and direction)
+//	glm::mat4 modelMatrix = glm::mat4(1.0f);
+//
+//	// Build the Model matrix
+//	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+//	glm::mat4 rotationMatrix = glm::eulerAngleYXZ(0.0f, 0.0f, 0.0f);
+//	glm::mat4 scalingMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+//
+//	modelMatrix = translationMatrix * rotationMatrix * scalingMatrix;
+//
+//	glm::mat4 MVP = _projectionMatrix * viewMatrix * modelMatrix;
+//
+//	// Send our transformation to the currently bound shader,
+//	// in the "MVP" uniform
+//	GLuint matrixID = glGetUniformLocation(_programID, "MVP");
+//	glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
+//
+//	// Bind our texture in Texture Unit 0
+//	glActiveTexture(GL_TEXTURE0);
+//	//glBindTexture(GL_TEXTURE_2D, entity->addSprite()/*->texture()*/);
+//	// Set our "myTextureSampler" sampler to user Texture Unit 0
+//	GLuint textureID = glGetUniformLocation(_programID, "myTextureSampler");
+//	glUniform1i(textureID, 0);
+//
+//	// 1st attribute buffer : vertices
+//	GLuint vertexPosition_modelspaceID = glGetAttribLocation(_programID, "vertexPosition_modelspace");
+//	glEnableVertexAttribArray(vertexPosition_modelspaceID);
+//	glBindBuffer(GL_ARRAY_BUFFER, /*entity->vertexbuffer()*/vertexShaderID);
+//	glVertexAttribPointer(
+//		vertexPosition_modelspaceID,  // The attribute we want to configure
+//		3,							  // size : x+y+z => 3
+//		GL_FLOAT,					  // type
+//		GL_FALSE,					  // normalized?
+//		0,							  // stride
+//		(void*)0					  // array buffer offset
+//	);
+//
+//	// 2nd attribute buffer : UVs
+//	GLuint vertexUVID = glGetAttribLocation(_programID, "vertexUV");
+//	glEnableVertexAttribArray(vertexUVID);
+//	glBindBuffer(GL_ARRAY_BUFFER, entity/*->uvbuffer()*/);
+//	glVertexAttribPointer(
+//		vertexUVID,				    // The attribute we want to configure
+//		2,							// size : U+V => 2
+//		GL_FLOAT,					// type
+//		GL_FALSE,					// normalized?
+//		0,							// stride
+//		(void*)0					// array buffer offset
+//	);
+//
+//	// Draw the triangles !
+//	glDrawArrays(GL_TRIANGLES, 0, 2 * 3); // 2*3 indices starting at 0 -> 2 triangles
+//
+//	glDisableVertexAttribArray(vertexPosition_modelspaceID);
+//	glDisableVertexAttribArray(vertexUVID);
+//}
 
 GLuint Renderer::loadShaders(const char* vertex_file_path, const char* fragment_file_path) {
 	// Create the shaders

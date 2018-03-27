@@ -37,7 +37,9 @@ class Scene {
 		 Sprite* pencils()  { return _pencils; };
 		 Sprite* kingkong() { return _kingkong; };
 		 Sprite* rgba()     { return _rgba; };
-		 Sprite* uv()       { return _uv; };
+		 Sprite* triangle() { return _triangle; };
+		 Sprite* circle()   { return _circle; };
+		 Sprite* square()   { return _square; };
 
 		 float rot_z() { return _rot_z; };
 
@@ -45,7 +47,9 @@ class Scene {
 		 Sprite* _pencils;
 		 Sprite* _kingkong;
 		 Sprite* _rgba;
-		 Sprite* _uv;
+		 Sprite* _triangle;
+		 Sprite* _circle;
+		 Sprite* _square;
 
 		 float _rot_z = 0.0f;
 };
