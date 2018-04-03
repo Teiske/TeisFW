@@ -1,6 +1,6 @@
 # CMake entry point
 cmake_minimum_required (VERSION 2.6)
-project (TeisFW)
+project (TGFW)
 
 find_package(OpenGL REQUIRED)
 
@@ -72,14 +72,6 @@ add_library(common
 	common/point_x.h
 )
 
-# Main
-add_executable(main
-	main/main.cpp
-)
-target_link_libraries(main
-	common
-	${ALL_GRAPHICS_LIBS}
-)
 # Copy assets and shaders to the build directory
 # (In Visual Studio, copy these directories to either 'Release' or 'Build')
 file(
@@ -89,4 +81,21 @@ file(
 file(
 	COPY common/shaders
 	DESTINATION ${CMAKE_BINARY_DIR}
+)
+
+# Main
+add_executable(main
+	main/main.cpp
+)
+target_link_libraries(main
+	common
+	${ALL_GRAPHICS_LIBS}
+)
+
+# Natureofcode
+add_executable(natureofcode
+	projects/natureofcode/main.cpp
+)
+target_link_libraries(natureofcode
+	${ALL_GRAPHICS_LIBS}
 )
