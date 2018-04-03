@@ -27,9 +27,9 @@ class Renderer {
 
 		void renderScene(Scene* scene);
 		void renderSprite(Sprite* sprite);
-		void renderEntity(Entity* entity);
-		GLFWwindow* window() { return _window; };
+		//void renderEntity(Entity* entity);
 
+		GLFWwindow* window() { return _window; };
 		unsigned int width() { return _window_width; };
 		unsigned int height() { return _window_height; };
 
