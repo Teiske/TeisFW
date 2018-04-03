@@ -95,6 +95,8 @@ target_link_libraries(main
 # Natureofcode
 add_executable(natureofcode
 	projects/natureofcode/main.cpp
+	projects/natureofcode/scene01.cpp
+	projects/natureofcode/scene01.h
 )
 target_link_libraries(natureofcode
 	${ALL_GRAPHICS_LIBS}
